@@ -1,7 +1,7 @@
 klocko theme
 ============
 
-Based off the [Solo](http://themes.shopify.com/themes/solo/styles/solo) theme for Shopify.
+Fork off the [Solo](http://themes.shopify.com/themes/solo/styles/solo) theme for Shopify.
 
 This is where I'll experiment, share changes and whatnot. It's the theme I use for my Shopify [test shop](http://klocko-and-sons3230.myshopify.com/).
 
