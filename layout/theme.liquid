@@ -7,6 +7,7 @@
 	<meta name="copyright" content="{{ shop.name | escape }}" />
 	{{ content_for_header }}
 	{{ "theme.css" | asset_url | stylesheet_tag }}
+	{{ "product-image-rollover.css" | asset_url | stylesheet_tag }}
 	<!--[if lte IE 6]>{{ "ie6.css" | asset_url | stylesheet_tag }}<![endif]-->{% if template == "product" %}{% if product.available %}{% if product.variants.size > 1 %}
 	{{ "option_selection.js" | shopify_asset_url | script_tag }}{% endif %}{% endif %}{% endif %}
 	{{ "jquery-1.4.2.min.js" | asset_url | script_tag }}

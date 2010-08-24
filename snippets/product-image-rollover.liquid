@@ -1,0 +1,19 @@
+<div id="images">
+    <!-- START IMAGE -->
+    <div id="image" class="clear">
+        <img src="{{ product.images[0] | product_img_url: "large" }}" alt="{{ product.title | escape }}" />
+    </div>
+    <!-- END IMAGE -->
+    <!-- START THUMBS -->
+    <div id="thumbs">
+        {% if product.images.size > 1 %}
+            {% for image in product.images %}
+                <p><a {% if forloop.first %} class="active"{% endif %} href="{{ image | product_img_url: "large" }}">
+                    <img src="{{ image | product_img_url: "thumb" }}" alt="{{ product.title | escape }}" />
+                </a></p>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <!-- END THUMBS -->
+</div>
+{{ 'product-image-rollover.js' | asset_url | script_tag }}

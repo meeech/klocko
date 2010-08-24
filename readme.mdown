@@ -3,4 +3,9 @@ klocko theme
 
 Based off the [Solo](http://themes.shopify.com/themes/solo/styles/solo) theme for Shopify.
 
-This is where I'll experiment, share changes and whatnot. 
+This is where I'll experiment, share changes and whatnot. It's the theme I use for my Shopify [test shop](http://klocko-and-sons3230.myshopify.com/).
+
+Included
+--------
+
+* Modifications for a product image rollover. See this [post](http://post-to-come) for more info.

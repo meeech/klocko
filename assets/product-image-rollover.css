@@ -1,0 +1,40 @@
+/* screen.css Overrides - Some defaults set for Solo Theme which we don't want anymore. */
+div#images div#thumbs p {
+    display: inline;
+}
+
+div#images div#image img {
+    float: none;
+}
+
+/* Styles */
+
+/*Center the Thumbs and main image. You can change this if desired.. */
+div#images div#image {
+    text-align: center;
+}
+
+div#images div#thumbs {
+    text-align: center;
+}
+
+/* Style the Thumbs */
+div#images div#thumbs { 
+    padding-top: 10px;
+}
+
+div#images div#thumbs a{
+    border: 1px solid #000;
+    /* so the a tag doesnt collapse. */
+    display: inline-block;
+    margin-top: 5px;
+}
+
+div#images div#thumbs a.active{
+    border: 1px solid #cc0000;
+}
+
+div#images div#thumbs a:hover{
+	margin-top: 0;
+	vertical-align: top;
+}

@@ -2,18 +2,9 @@
 <!-- START SUMMARY -->
 <div id="summary" class="clear">
 	<!-- START IMAGES -->
-	<div id="images">
-		<!-- START IMAGE -->
-		<div id="image" class="clear">
-			<img src="{{ product.images[0] | product_img_url: "large" }}" alt="{{ product.title | escape }}" />
-		</div>
-		<!-- END IMAGE -->
-		<!-- START THUMBS -->
-		<div id="thumbs">{% if product.images.size > 1 %}{% for image in product.images %}
-			<p{% if forloop.first %} class="active"{% endif %}><a href="{{ image | product_img_url: "large" }}" rel="lightbox-images">{% if forloop.first %}More Images{% else %}{{ forloop.index }}{% endif %}</a></p>{% endfor %}{% endif %}
-		</div>
-		<!-- END THUMBS -->
-	</div>
+    {% if product.images.size > 0 %}
+        {% include 'product-image-rollover' %}
+    {% endif %}
 	<!-- END IMAGES -->
 	<!-- START DETAILS -->
 	<div id="details">
