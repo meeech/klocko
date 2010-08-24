@@ -1,0 +1,1153 @@
+/* Designed and hand-coded by http://www.pixellent.com. Copyright (c) Pixellent, LLC. All rights reserved. */
+
+/* @group Global */
+
+body {
+	color: #2c2f2f;
+	font-family: "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
+	text-align: center;
+	background-color: #fff;
+}
+
+div#container {
+	text-align: left;
+	width: 894px;
+	min-width: 894px;
+	margin: 0 auto;
+}
+
+div#shadow {
+	background: url(content.png) no-repeat;
+	width: 894px;
+	height: 307px;
+}
+
+div.content {
+	margin-top: -307px;
+	padding: 15px 7px 0;
+}
+
+div#bg {
+	background-color: #fff;
+	min-height: 250px;
+	height: auto !important;
+	height: 270px;
+	padding: 0 35px 25px;
+}
+
+div#roundup {
+	font-size: 1px;
+	text-indent: -99999px;
+	background: url(roundup.png) no-repeat;
+	height: 10px;
+}
+
+div#main {
+	width: 590px;
+	padding-bottom: 15px;
+	float: left;
+}
+
+div#sidebar {
+	width: 180px;
+	float: right;
+}
+
+.clear {
+	display: inline-block;
+}
+
+.clear {
+	display: block;
+}
+
+.clear:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+a {
+	color: #a2d400;
+	text-decoration: none;
+}
+
+div#footer p a, div#header h2 a, ul#links li a, div#gocart a, div.entry h2.title a, ul#results li p a {
+	color: #2c2f2f;
+}
+
+a:hover, ul#results li p a:hover {
+	text-decoration: underline;
+}
+
+div#header h2 a:hover, div.entry h2.title a:hover {
+	color: #a2d400;
+	text-decoration: none;
+}
+
+ul#links li a:hover, div#gocart a:hover {
+	text-decoration: none;
+}
+
+/* @end */
+
+/* @group Header */
+
+div#header {
+	padding: 60px 7px 25px;
+}
+
+div#header h2 {
+	font-size: 30px;
+	padding-top: 4px;
+	float: left;
+}
+
+div#logo, div#logo img, div#hello div {
+	float: left;
+}
+
+div#hello {
+	float: right;
+}
+
+div#hello p {
+	font-size: 12px;
+	line-height: 1.62em;
+}
+
+div#hello p strong {
+	padding-right: 3px;
+}
+
+/* @end */
+
+/* @group Navigation */
+
+div#navigate {
+	height: 48px;
+	padding-bottom: 20px;
+	position: relative;
+}
+
+div#nav {
+	background: url(nav.png) no-repeat;
+	width: 880px;
+	min-width: 880px;
+	height: 44px;
+	padding: 1px 7px 3px;
+	position: absolute;
+}
+
+ul#links {
+	background: url(links.gif) no-repeat -7px -1px;
+	height: 44px;
+	top: 1px;
+	left: 7px;
+	float: left;
+	overflow: hidden;
+	position: absolute;
+}
+
+ul#links li {
+	font-size: 14px;
+	width: 126px;
+	height: 44px;
+	float: left;
+	overflow: hidden;
+}
+
+ul#links li.link-6 {
+	width: 125px;
+}
+
+ul#links li a {
+	font-weight: bold;
+	text-align: center;
+	background: url(links.gif) no-repeat -7px -1px;
+	width: 125px;
+	padding: 13px 1px 17px 0;
+	display: block;
+	float: left;
+}
+
+ul#links li.link-1 a {
+	background-position: -7px -1px;
+}
+
+ul#links li.link-1 a:hover {
+	background-position: -7px -49px;
+}
+
+ul#links li.link-1 a.active, ul#links li.link-1 a.active:hover {
+	background-position: -7px -97px;
+}
+
+ul#links li.link-2 a {
+	background-position: -133px -1px;
+}
+
+ul#links li.link-2 a:hover {
+	background-position: -133px -49px;
+}
+
+ul#links li.link-2 a.active, ul#links li.link-2 a.active:hover {
+	background-position: -133px -97px;
+}
+
+ul#links li.link-3 a {
+	background-position: -259px -1px;
+}
+
+ul#links li.link-3 a:hover {
+	background-position: -259px -49px;
+}
+
+ul#links li.link-3 a.active, ul#links li.link-3 a.active:hover {
+	background-position: -259px -97px;
+}
+
+ul#links li.link-4 a {
+	background-position: -385px -1px;
+}
+
+ul#links li.link-4 a:hover {
+	background-position: -385px -49px;
+}
+
+ul#links li.link-4 a.active, ul#links li.link-4 a.active:hover {
+	background-position: -385px -97px;
+}
+
+ul#links li.link-5 a {
+	background-position: -511px -1px;
+}
+
+ul#links li.link-5 a:hover {
+	background-position: -511px -49px;
+}
+
+ul#links li.link-5 a.active, ul#links li.link-5 a.active:hover {
+	background-position: -511px -97px;
+}
+
+ul#links li.link-6 a {
+	background-position: -637px -1px;
+	padding-right: 0;
+}
+
+ul#links li.link-6 a:hover {
+	background-position: -637px -49px;
+}
+
+ul#links li.link-6 a.active, ul#links li.link-6 a.active:hover {
+	background-position: -637px -97px;
+}
+
+div#gocart {
+	font-size: 14px;
+	background: url(links.gif) no-repeat -762px -1px;
+	width: 125px;
+	height: 44px;
+	top: 1px;
+	right: 7px;
+	float: right;
+	overflow: hidden;
+	position: absolute;
+}
+
+div#gocart a {
+	font-weight: bold;
+	text-align: right;
+	background: url(links.gif) no-repeat -762px -1px;
+	width: 75px;
+	padding: 13px 49px 17px 1px;
+	display: block;
+	float: left;
+}
+
+div#gocart a:hover {
+	background-position: -762px -49px;
+}
+
+div#gocart a.active, div#gocart a.active:hover {
+	background-position: -762px -97px;
+}
+
+/* @end */
+
+/* @group Index */
+
+div#index div#bg, div#product div#bg {
+	padding: 0 0 25px;
+}
+
+div#showcase h1 {
+	font-size: 60px;
+	line-height: 1.42em;
+	text-align: center;
+	padding: 20px 0 25px;
+}
+
+div#showcase div#image {
+	text-align: center;
+}
+
+div#showcase h3 {
+	font-size: 30px;
+	text-align: center;
+	padding-top: 25px;
+}
+
+div#showcase p {
+	font-size: 14px;
+	font-weight: bold;
+	padding-top: 25px;
+}
+
+div#showcase div#buy {
+	padding-top: 25px;
+}
+
+div#showcase div#button {
+	width: 445px;
+	float: left;
+}
+
+div#showcase div#button p {
+	background: url(button.png) no-repeat;
+	width: 170px;
+	height: 55px;
+	padding: 0;
+	float: right;
+}
+
+div#showcase div#button p a {
+	background: url(button.png) no-repeat;
+	width: 170px;
+	height: 0;
+	padding-top: 55px;
+	display: block;
+	overflow: hidden;
+}
+
+div#showcase div#button p a:hover {
+	background-position: -170px 0;
+}
+
+div#showcase h2 {
+	font-size: 36px;
+	font-weight: normal;
+	width: 420px;
+	padding-top: 7px;
+	float: right;
+}
+
+/* @end */
+
+/* @group Related */
+
+p#unrelated {
+	font-size: 16px;
+	line-height: 1.42em;
+	text-align: center;
+	padding-top: 30px;
+}
+
+div#related {
+	padding-top: 30px;
+}
+
+div#related h6 {
+	font-size: 14px;
+	text-align: center;
+	padding: 15px 0;
+	border-top: 1px solid #e6e4e5;
+	border-bottom: 1px solid #e6e4e5;
+}
+
+div#slider {
+	padding-top: 20px;
+	position: relative;
+}
+
+div#slider div#prev, div#slider div#next {
+	width: 34px;
+	height: 34px;
+	top: 45px;
+	left: 101px;
+	position: absolute;
+}
+
+div#slider div#next {
+	left: 745px;
+}
+
+div#slider div#prev p, div#slider div#next p {
+	background: url(slider.png) no-repeat;
+	width: 34px;
+	height: 34px;
+}
+
+div#slider div#prev p a, div#slider div#next p a {
+	background: url(slider.png) no-repeat;
+	width: 34px;
+	height: 0;
+	padding-top: 34px;
+	display: block;
+	overflow: hidden;
+}
+
+div#slider div#next p, div#slider div#next p a {
+	background-position: -34px 0;
+}
+
+div#slider div#prev a:hover {
+	background-position: 0 -34px;
+}
+
+div#slider div#prev a.inactive, div#slider div#prev a.inactive:hover {
+	background-position: 0 -68px;
+}
+
+div#slider div#next a:hover {
+	background-position: -34px -34px;
+}
+
+div#slider div#next a.inactive, div#slider div#next a.inactive:hover {
+	background-position: -34px -68px;
+}
+
+div#slider div#window {
+	width: 580px;
+	margin: 0 150px;
+	overflow: hidden;
+}
+
+div#slider ul {
+	width: 10000px;
+	margin-left: 0;
+}
+
+div#slider li {
+	width: 100px;
+	padding: 0 8px;
+	float: left;
+}
+
+div#slider div#image img {
+	float: left;
+}
+
+div#slider h4 {
+	font-size: 13px;
+	text-align: center;
+	padding: 10px 0 3px;
+}
+
+div#slider li p {
+	font-size: 12px;
+	text-align: center;
+}
+
+div#slider li p del {
+	color: #999;
+	padding-left: 2px;
+}
+
+/* @end */
+
+/* @group Collection & Search */
+
+div#collections-listing h2 {
+	font-size: 60px;
+	line-height: 1.42em;
+	padding: 20px 0 5px;
+}
+
+div#collections-listing ul {
+	padding-top: 10px;
+}
+
+div#collections-listing li {
+	font-size: 16px;
+	padding-top: 5px;
+}
+
+div#collections-listing li small {
+	font-size: 12px;
+	padding-left: 3px;
+}
+
+ul#products {
+	padding: 15px 0;
+}
+
+ul#results {
+	padding: 30px 0 15px;
+}
+
+ul#products li, ul#results li {
+	width: 268px;
+	float: left;
+	border-right: 1px solid #e4e4e4;
+	border-bottom: 1px solid #e4e4e4;
+}
+
+ul#products li.end, ul#results li.end {
+	border-right: none;
+}
+
+ul#products li div.image, ul#results li div.image, ul#results li div.desc {
+	padding: 10px 14px;
+}
+
+ul#products li div.image div.align, ul#results li div.image div.align, ul#results li div.desc div.bg {
+	width: 240px;
+	height: 240px;
+	position: relative;
+}
+
+ul#results li div.desc div.bg {
+	overflow: hidden;
+}
+
+ul#products li div.image div.align div, ul#results li div.image div.align div {
+	font-size: 217px;
+	text-align: center;
+	vertical-align: middle;
+	width: 240px;
+	height: 240px;
+	overflow: hidden;
+	display: table-cell;
+}
+
+ul#products li div.image div.align div img, ul#results li div.image div.align div img {
+	vertical-align: middle;
+}
+
+ul#products li h3, ul#results li h3 {
+	font-size: 13px;
+	text-align: center;
+}
+
+ul#products li p, ul#results li p {
+	font-size: 12px;
+	text-align: center;
+	padding: 3px 0 15px;
+}
+
+ul#results li div.desc div.bg p {
+	font-size: 13px;
+	text-align: left;
+	line-height: 1.52em;
+	padding: 15px 0 0;
+}
+
+ul#products li p del, ul#results li p del {
+	color: #999;
+	padding-left: 3px;
+}
+
+div#finder {
+	padding-left: 180px;
+}
+
+div#finder input.field {
+	font: 15px "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
+	width: 300px;
+	padding: 6px;
+	float: left;
+}
+
+div#finder input.submit {
+	color: #fff;
+	font: bold 14px "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif;
+	text-align: center;
+	text-decoration: none;
+	background-color: #9ebf2a;
+	width: 130px;
+	margin: 0 0 0 10px;
+	padding: 8px 10px;
+	cursor: pointer;
+	border: none;
+	float: left;
+}
+
+div#finder input.submit:hover {
+	background-color: #94b228;
+}
+
+p#empty {
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+	line-height: 1.52em;
+	padding-top: 15px;
+}
+
+div#search p#empty {
+	font-size: 13px;
+	font-weight: normal;
+}
+
+div#cart p#empty {
+	font-weight: normal;
+	padding-top: 0;
+}
+
+div#paginate {
+	font-size: 16px;
+	text-align: center;
+	padding: 10px 0 15px;
+}
+
+div#blog div#paginate {
+	text-align: left;
+	padding: 25px 0 0;
+}
+
+div#paginate div {
+	padding-top: 25px;
+	border-top: 1px solid #e4e4e4;
+}
+
+div#paginate a {
+	padding: 0 3px;
+}
+
+div#paginate span.current {
+	font-weight: bold;
+	padding: 0 3px;
+}
+
+div#paginate div a, div#paginate div span.current {
+	padding: 0 6px 0 0;
+}
+
+/* @end */
+
+/* @group Product */
+
+div#images {
+	width: 480px;
+	padding: 10px 0 10px 35px;
+	float: left;
+}
+
+div#images div#image img {
+	float: left;
+}
+
+div#images div#thumbs p {
+	font-size: 13px;
+	text-align: center;
+	padding-top: 20px;
+	display: none;
+}
+
+div#images div#thumbs p.active {
+	display: block;
+}
+
+div#details {
+	width: 285px;
+	padding: 30px 35px 15px 0;
+	float: right;
+}
+
+div#options, div#buy {
+	padding-top: 5px;
+}
+
+div#options form {
+	padding-top: 15px;
+	border-top: 1px solid #e4e4e4;
+}
+
+div#options div#variants {
+	padding-bottom: 15px;
+}
+
+div#options div#variants div.border {
+	padding-bottom: 5px;
+	border-bottom: 1px solid #e4e4e4;
+}
+
+div#options label {
+	font-size: 13px;
+	display: block;
+}
+
+div#options select {
+	margin: 4px 0 15px;
+}
+
+div#buy h2, div#buy h6 {
+	font-size: 36px;
+}
+
+div#buy h2 del {
+	color: #999;
+	font-size: 18px;
+	font-weight: normal;
+	padding-left: 3px;
+}
+
+div#buy input#add {
+	margin-top: 15px;
+}
+
+/* @end */
+
+/* @group Slimbox */
+
+#lbOverlay {
+	position: fixed;
+	z-index: 9999;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	cursor: pointer;
+}
+
+#lbCenter, #lbBottomContainer {
+	position: absolute;
+	z-index: 9999;
+	overflow: hidden;
+	background-color: #fff;
+}
+
+.lbLoading {
+	background: #fff url(loading.gif) no-repeat center;
+}
+
+#lbImage {
+	position: absolute;
+	left: 0;
+	top: 0;
+	border: 10px solid #fff;
+	background-repeat: no-repeat;
+}
+
+#lbPrevLink, #lbNextLink {
+	display: block;
+	position: absolute;
+	top: 0;
+	width: 50%;
+	outline: none;
+}
+
+#lbPrevLink {
+	left: 0;
+}
+
+#lbPrevLink:hover {
+	background: transparent url(prevlabel.gif) no-repeat 0 15%;
+}
+
+#lbNextLink {
+	right: 0;
+}
+
+#lbNextLink:hover {
+	background: transparent url(nextlabel.gif) no-repeat 100% 15%;
+}
+
+#lbBottom {
+	font-size: 13px;
+	color: #666;
+	line-height: 1.52em;
+	text-align: left;
+	border: 10px solid #fff;
+	border-top-style: none;
+}
+
+#lbCloseLink {
+	display: block;
+	float: right;
+	width: 66px;
+	height: 22px;
+	background: transparent url(closelabel.gif) no-repeat center;
+	margin: 5px 0;
+	outline: none;
+}
+
+#lbCaption, #lbNumber {
+	margin-right: 71px;
+}
+
+#lbNumber {
+	padding-top: 8px;
+}
+
+#lbCaption {
+	font-weight: bold;
+}
+
+/* @end */
+
+/* @group Cart */
+
+div#cart table {
+	width: 100%;
+}
+
+div#cart th {
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+	padding: 10px 15px;
+	border-top: 1px solid #e4e4e4;
+	border-bottom: 1px solid #e4e4e4;
+}
+
+div#cart th.start {
+	text-align: left;
+	padding-left: 0;
+}
+
+div#cart td {
+	font-size: 13px;
+	text-align: center;
+	vertical-align: middle;
+	padding: 15px;
+	border-bottom: 1px solid #e4e4e4;
+}
+
+div#cart td.pic {
+	width: 50px;
+	padding-right: 5px;
+	padding-left: 0;
+}
+
+div#cart td.pic img {
+	float: left;
+}
+
+div#cart td.title {
+	text-align: left;
+}
+
+div#cart td input.field {
+	text-align: center;
+	width: 40px;
+	padding: 3px;
+}
+
+div#complete {
+	padding-top: 25px;
+}
+
+div#notes {
+	width: 410px;
+	padding-top: 15px;
+	float: left;
+}
+
+div#notes label {
+	font-size: 13px;
+	display: block;
+}
+
+div#notes textarea {
+	width: 380px;
+	height: 100px;
+	padding: 3px;
+	margin-top: 4px;
+}
+
+div#total {
+	width: 360px;
+	float: right;
+}
+
+div#total h3 {
+	font-size: 30px;
+	text-align: right;
+	padding-bottom: 25px;
+}
+
+div#total div#checkout input {
+	float: right;
+	margin-left: 10px;
+}
+
+/* @end */
+
+/* @group Blog & Page */
+
+div.entry {
+	padding: 10px 0 25px;
+	border-bottom: 1px solid #e4e4e4;
+}
+
+div#article div.entry, div#blog div#main div.start {
+	padding-top: 0;
+}
+
+div#blog div#main div.end {
+	padding-bottom: 0;
+	border-bottom: none;
+}
+
+div#page h1, div#page h2, div#page h3, div#page h4, div#page h5, div#page h6, div.entry h1, div.entry h2, div.entry h3, div.entry h4, div.entry h5, div.entry h6, div.comment h1, div.comment h2, div.comment h3, div.comment h4, div.comment h5, div.comment h6 {
+	font-size: 20px;
+	line-height: 1.42em;
+	padding: 15px 0;
+}
+
+div.entry h2.title {
+	padding-bottom: 0;
+}
+
+div.entry h2.title a {
+	line-height: 1.42em;
+}
+
+div.entry h5.posted {
+	color: #666;
+	font-size: 13px;
+	font-weight: normal;
+	padding: 3px 0 5px;
+}
+
+div.entry h5.posted span {
+	background: url(bubble.png) no-repeat 8px 2px;
+	padding-left: 30px;
+}
+
+div#collection div#excerpt h1.title, div#product h1, div#cart h1, div#missing h1, div#page h1.title, div#blog h1.title, div#article h1.title, div#search h1 {
+	font-size: 60px;
+	line-height: 1.42em;
+	text-align: center;
+	padding: 20px 0 15px;
+}
+
+div#search h1 {
+	padding-bottom: 5px;
+}
+
+div#page h1.title, div#blog h1.title, div#article h1.title {
+	text-align: left;
+	padding-bottom: 0;
+}
+
+div#collection div#excerpt p, div#desc p, div#missing p, div#page p, div.entry p, div.comment p {
+	font-size: 13px;
+	line-height: 1.52em;
+	padding-bottom: 15px;
+}
+
+div#page div#main p, div.entry p, div.comment p {
+	padding: 15px 0 0;
+}
+
+div#missing p {
+	font-size: 14px;
+	text-align: center;
+}
+
+div#collection div#excerpt ul, div#collection div#excerpt ol, div#desc ul, div#desc ol {
+	padding-bottom: 10px;
+}
+
+div#page ul, div#page ol, div.entry ul, div.entry ol, div.comment ul, div.comment ol {
+	padding-top: 10px;
+}
+
+div#collection div#excerpt li, div#desc li, div#page li, div.entry li, div.comment li {
+	font-size: 13px;
+	line-height: 1.52em;
+	margin-left: 35px;
+	padding-bottom: 5px;
+	list-style-type: disc;
+	list-style-position: outside;
+}
+
+div#page li, div.entry li, div.comment li {
+	padding: 5px 0 0;
+}
+
+div#collection div#excerpt ol li, div#desc ol li, div#page ol li, div.entry ol li, div.comment ol li {
+	list-style-type: decimal;
+}
+
+div#sidebar h3 {
+	font-size: 20px;
+	line-height: 1.42em;
+	padding: 15px 0 0;
+}
+
+div#sidebar div.post {
+	padding-top: 15px;
+}
+
+div#sidebar div.end {
+	padding-bottom: 20px;
+}
+
+div#sidebar div.post h5 {
+	font-size: 14px;
+	line-height: 1.52em;
+	padding: 0 0 5px;
+}
+
+div#sidebar div.post p {
+	font-size: 13px;
+	line-height: 1.52em;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #e4e4e4;
+}
+
+div#sidebar p#feed {
+	font-size: 13px;
+	font-weight: bold;
+	background: url(rss.png) no-repeat 0 1px;
+	padding: 0 0 15px 20px;
+}
+
+/* @end */
+
+/* @group Comments */
+
+div#comments h3 {
+	font-size: 20px;
+	padding: 25px 0 15px;
+}
+
+div#comments h3 span {
+	color: #999;
+	font-size: 13px;
+	font-weight: normal;
+}
+
+div.comment {
+	padding: 2px 0 20px;
+	border-bottom: 1px solid #e4e4e4;
+}
+
+div#comments div.start {
+	margin-top: -15px;
+}
+
+div.comment h6.author {
+	font-size: 13px;
+	padding: 15px 0 0;
+}
+
+div#comments form label {
+	font-size: 13px;
+	display: block;
+}
+
+div#comments form label span {
+	color: #999;
+	font-weight: normal;
+	padding-left: 2px;
+}
+
+div#comments form input.field, div#comments form textarea {
+	width: 350px;
+	margin: 3px 0 15px;
+	padding: 3px;
+}
+
+div#comments form textarea {
+	width: 450px;
+	height: 150px;
+}
+
+div#comments form input.submit {
+	margin-top: 5px;
+}
+
+div#comments p#posted, div#comments p#error {
+	color: #a2d400;
+	font-size: 13px;
+	font-weight: bold;
+	padding-bottom: 15px;
+}
+
+div#comments p#empty {
+	font-size: 13px;
+	font-weight: normal;
+	text-align: left;
+	padding: 0 0 20px;
+	border-bottom: 1px solid #e4e4e4;
+}
+
+div#article div#main p#closed {
+	font-size: 13px;
+	font-weight: bold;
+	padding-top: 25px;
+}
+
+/* @end */
+
+/* @group Overview */
+
+div#overview {
+	padding: 30px 7px 0;
+}
+
+div#overview ul {
+	background-color: #f2f2f2;
+	min-width: 840px;
+	padding: 27px 19px 15px;
+	border: 1px solid #dedbdb;
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+	border-radius: 7px;
+}
+
+div#overview li {
+	width: 250px;
+	padding: 0 15px;
+	float: left;
+}
+
+div#overview h3 {
+	font-size: 20px;
+	line-height: 1.32em;
+	padding-bottom: 15px;
+}
+
+div#overview h5, div#overview p {
+	font-size: 13px;
+	line-height: 1.52em;
+	padding-bottom: 15px;
+}
+
+/* @end */
+
+/* @group Footer */
+
+div#footer {
+	padding: 40px 7px 100px;
+}
+
+div#footer p {
+	font-size: 12px;
+	float: left;
+}
+
+div#footer p.links {
+	float: right;
+}
+
+div#footer p.links a {
+	margin-left: 10px;
+}
+
+div#footer p span {
+	display: none;
+}
+
+/* @end */
+
+/* End of Stylesheet */

@@ -1,0 +1,6 @@
+klocko theme
+============
+
+Based off the [Solo](http://themes.shopify.com/themes/solo/styles/solo) theme for Shopify.
+
+This is where I'll experiment, share changes and whatnot. 

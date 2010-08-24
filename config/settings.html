@@ -1,0 +1,236 @@
+<fieldset>
+	<legend>Logo</legend>
+	<table>
+		<tr>
+			<th><label for="logo">Custom Logo</label></th>
+			<td>
+				<select name="logo" id="logo">
+					<option value="disabled">Disabled</option>
+					<option value="enabled">Enabled</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th><label for="logo_file">Logo Image</label></th>
+			<td><input type="file" name="logo.png" id="logo_file" data-max-width="500" data-max-height="300" /></td>
+		</tr>
+	</table>
+</fieldset>
+<fieldset>
+	<legend>Background</legend>
+	<table>
+		<tr>
+			<th><label for="bg_color">Background Color</label></th>
+			<td><input type="text" name="bg_color" id="bg_color" class="color" value="#ffffff" /></td>
+		</tr>
+		<tr>
+			<th><label for="bg_image">Custom Background</label></th>
+			<td>
+				<select name="bg_image" id="bg_image">
+					<option value="disabled">Disabled</option>
+					<option value="enabled">Enabled</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th><label for="bg_image_file">Background Image</label></th>
+			<td><input type="file" name="bg.png" id="bg_image_file" data-max-width="1000" data-max-height="1000" /></td>
+		</tr>
+		<tr>
+			<th><label for="bg_repeat">Background Repeat</label></th>
+			<td>
+				<select name="bg_repeat" id="bg_repeat">
+					<option value="repeat">Repeat</option>
+					<option value="repeat-y">Only Repeat Vertically</option>
+					<option value="repeat-x">Only Repeat Horizontally</option>
+					<option value="no-repeat">Don't Repeat</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th><label for="bg_position">Background Position</label></th>
+			<td>
+				<select name="bg_position" id="bg_position">
+					<option value="0 0">Left</option>
+					<option value="center 0">Center</option>
+					<option value="right 0">Right</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th><label for="bg_attachment">Background Attachment</label></th>
+			<td>
+				<select name="bg_attachment" id="bg_attachment">
+					<option value="scroll">Scroll</option>
+					<option value="fixed">Fixed</option>
+				</select>
+			</td>
+		</tr>
+	</table>
+</fieldset>
+<fieldset>
+	<legend>Typography &amp; Colors</legend>
+	<table>
+		<tr>
+			<th><label for="typography">Site Font</label></th>
+			<td>
+				<select name="typography" id="typography" class="font">
+					<option value="'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Lucida, Helvetica, Arial, sans-serif">'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Lucida, Helvetica, Arial, sans-serif</option>
+					<option value="Georgia, Utopia, 'Times New Roman', Times, serif">Georgia, Utopia, 'Times New Roman', Times, serif</option>
+					<option value="Impact, Charcoal, Helvetica, Arial, sans-serif">Impact, Charcoal, Helvetica, Arial, sans-serif</option>
+					<option value="Helvetica, Arial, sans-serif" selected="selected">Helvetica/Arial</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th><label for="text_color">Text Color</label></th>
+			<td><input type="text" name="text_color" id="text_color" class="color" value="#2c2f2f" /></td>
+		</tr>
+		<tr>
+			<th><label for="title_text_color">Titles Text Color</label></th>
+			<td><input type="text" name="title_text_color" id="title_text_color" class="color" value="#2c2f2f" /></td>
+		</tr>
+		<tr>
+			<th><label for="accent_text_color">Accent Text Color</label></th>
+			<td><input type="text" name="accent_text_color" id="accent_text_color" class="color" value="#999999" /></td>
+		</tr>
+		<tr>
+			<th><label for="link_color">Link Color</label></th>
+			<td><input type="text" name="link_color" id="link_color" class="color" value="#a2d400" /></td>
+		</tr>
+		<tr>
+			<th><label for="link_hover">Link Hover Color</label></th>
+			<td><input type="text" name="link_hover" id="link_hover" class="color" value="#a2d400" /></td>
+		</tr>
+	</table>
+</fieldset>
+<fieldset>
+	<legend>Header</legend>
+	<table>
+		<tr>
+			<th><label for="title_color">Title Color</label></th>
+			<td><input type="text" name="title_color" id="title_color" class="color" value="#2c2f2f" /></td>
+		</tr>
+		<tr>
+			<th><label for="title_hover">Title Hover Color</label></th>
+			<td><input type="text" name="title_hover" id="title_hover" class="color" value="#a2d400" /></td>
+		</tr>
+		<tr>
+			<th><label for="header_text_color">Text Color</label></th>
+			<td><input type="text" name="header_text_color" id="header_text_color" class="color" value="#2c2f2f" /></td>
+		</tr>
+		<tr>
+			<th><label for="header_link_color">Link Color</label></th>
+			<td><input type="text" name="header_link_color" id="header_link_color" class="color" value="#a2d400" /></td>
+		</tr>
+		<tr>
+			<th><label for="header_link_hover">Link Hover Color</label></th>
+			<td><input type="text" name="header_link_hover" id="header_link_hover" class="color" value="#a2d400" /></td>
+		</tr>
+	</table>
+</fieldset>
+<fieldset>
+	<legend>Navigation</legend>
+	<table>
+		<tr>
+			<th><label for="nav_link_color">Link Color</label></th>
+			<td><input type="text" name="nav_link_color" id="nav_link_color" class="color" value="#2c2f2f" /></td>
+		</tr>
+		<tr>
+			<th><label for="nav_link_hover">Link Hover Color</label></th>
+			<td><input type="text" name="nav_link_hover" id="nav_link_hover" class="color" value="#2c2f2f" /></td>
+		</tr>
+	</table>
+</fieldset>
+<fieldset>
+	<legend>Overview</legend>
+	<table>
+		<tr>
+			<th><label for="overview_bg_color">Background Color</label></th>
+			<td><input type="text" name="overview_bg_color" id="overview_bg_color" class="color" value="#f2f2f2" /></td>
+		</tr>
+		<tr>
+			<th><label for="overview_border_color">Border Color</label></th>
+			<td><input type="text" name="overview_border_color" id="overview_border_color" class="color" value="#dedbdb" /></td>
+		</tr>
+		<tr>
+			<th><label for="overview_text_color">Text Color</label></th>
+			<td><input type="text" name="overview_text_color" id="overview_text_color" class="color" value="#2c2f2f" /></td>
+		</tr>
+		<tr>
+			<th><label for="overview_title_text_color">Titles Color</label></th>
+			<td><input type="text" name="overview_title_text_color" id="overview_title_text_color" class="color" value="#2c2f2f" /></td>
+		</tr>
+		<tr>
+			<th><label for="overview_link_color">Link Color</label></th>
+			<td><input type="text" name="overview_link_color" id="overview_link_color" class="color" value="#a2d400" /></td>
+		</tr>
+		<tr>
+			<th><label for="overview_link_hover">Link Hover Color</label></th>
+			<td><input type="text" name="overview_link_hover" id="overview_link_hover" class="color" value="#a2d400" /></td>
+		</tr>
+	</table>
+</fieldset>
+<fieldset>
+	<legend>Footer</legend>
+	<table>
+		<tr>
+			<th><label for="footer_text_color">Text Color</label></th>
+			<td><input type="text" name="footer_text_color" id="footer_text_color" class="color" value="#2c2f2f" /></td>
+		</tr>
+		<tr>
+			<th><label for="footer_link_color">Link Color</label></th>
+			<td><input type="text" name="footer_link_color" id="footer_link_color" class="color" value="#2c2f2f" /></td>
+		</tr>
+		<tr>
+			<th><label for="footer_link_hover">Link Hover Color</label></th>
+			<td><input type="text" name="footer_link_hover" id="footer_link_hover" class="color" value="#2c2f2f" /></td>
+		</tr>
+	</table>
+</fieldset>
+<fieldset>
+	<legend>Search Button</legend>
+	<table>
+		<tr>
+			<th><label for="search_btn_text_color">Text Color</label></th>
+			<td><input type="text" name="search_btn_text_color" id="search_btn_text_color" class="color" value="#ffffff" /></td>
+		</tr>
+		<tr>
+			<th><label for="search_btn_hover_color">Text Hover Color</label></th>
+			<td><input type="text" name="search_btn_hover_color" id="search_btn_hover_color" class="color" value="#ffffff" /></td>
+		</tr>
+		<tr>
+			<th><label for="search_btn_bg_color">Background Color</label></th>
+			<td><input type="text" name="search_btn_bg_color" id="search_btn_bg_color" class="color" value="#9ebf2a" /></td>
+		</tr>
+		<tr>
+			<th><label for="search_btn_bg_hover">Link Hover Color</label></th>
+			<td><input type="text" name="search_btn_bg_hover" id="search_btn_bg_hover" class="color" value="#94b228" /></td>
+		</tr>
+	</table>
+</fieldset>
+<fieldset>
+	<legend>Text Snippets</legend>
+	<table>
+		<tr>
+			<th><label for="phone">Phone Number</label></th>
+			<td><input type="text" name="phone" id="phone" value="555.555.555" /></td>
+		</tr>
+		<tr>
+			<th><label for="email">Email Address</label></th>
+			<td><input type="text" name="email" id="email" value="info@fakedomain.com" /></td>
+		</tr>
+		<tr>
+			<th><label for="showcase">Homepage Tagline</label></th>
+			<td><input type="text" name="showcase" id="showcase" value="The chic chair that's perfect for entertaining." /></td>
+		</tr>
+		<tr>
+			<th><label for="related">Related Title</label></th>
+			<td><input type="text" name="related" id="related" value="Take a look at these great accessories:" /></td>
+		</tr>
+		<tr>
+			<th><label for="notes">Cart Comments</label></th>
+			<td><input type="text" name="notes" id="notes" value="Tell us about any special instructions:" /></td>
+		</tr>
+	</table>
+</fieldset>

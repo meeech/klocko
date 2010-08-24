@@ -1,0 +1,16 @@
+<!-- START SHOWCASE -->
+<div id="showcase">{% if collections.frontpage.products.size > 0 %}{% for product in collections.frontpage.products limit: 1 %}
+	<h1>{{ product.title | escape }}</h1>
+	<div id="image" class="clear">
+		<a href="{{ product.url | within: collections.all }}"><img src="{{ product.images[0] | product_img_url: "grande" }}" alt="{{ product.title | escape }}" /></a>
+	</div>{% if settings.showcase.size > 0 %}
+	<h3>{{ settings.showcase | escape }}</h3>{% endif %}
+	<div id="buy" class="clear">
+		<div id="button">
+			<p><a href="{{ product.url | within: collections.all }}">BUY THIS</a></p>
+		</div>
+		<h2>{{ product.price | money }}</h2>
+	</div>{% endfor %}{% else %}
+	<p><a href="/admin/custom_collections">Add a product to the "frontpage" collection to see it here...</a></p>{% endif %}
+</div>
+<!-- END SHOWCASE -->{% include "related" %}

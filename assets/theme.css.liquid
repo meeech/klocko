@@ -1,0 +1,101 @@
+/* Designed and hand-coded by http://www.pixellent.com. Copyright (c) Pixellent, LLC. All rights reserved. */
+
+@import url("reset.css");
+@import url("screen.css");
+
+body {
+	color: {{ settings.text_color }};
+	font-family: {{ settings.typography }};{% if settings.bg_image == "enabled" %}
+	background: {{ settings.bg_color }} url(bg.png) {{ settings.bg_repeat }} {{ settings.bg_attachment }} {{ settings.bg_position }};{% else %}
+	background-color: {{ settings.bg_color }};{% endif %}
+}
+
+div#showcase h1, div#collections-listing h2, div#collection div#excerpt h1.title, div#product h1, div#cart h1, div#missing h1, div#page h1.title, div#blog h1.title, div#article h1.title, div#search h1, div#comments h3, div#overview h3 {
+	color: {{ settings.title_text_color }};
+}
+
+div#slider li p del, ul#products li p del, ul#results li p del, div#buy h2 del, div#comments h3 span, div#comments form label span {
+	color: {{ settings.accent_text_color }};
+}
+
+a {
+	color: {{ settings.link_color }};
+}
+
+a:hover {
+	color: {{ settings.link_hover }};
+}
+
+div#header h2 a {
+	color: {{ settings.title_color }};
+}
+
+div#header h2 a:hover {
+	color: {{ settings.title_hover }};
+}
+
+div#hello p {
+	color: {{ settings.header_text_color }};
+}
+
+div#hello p a {
+	color: {{ settings.header_link_color }};
+}
+
+div#hello p a:hover {
+	color: {{ settings.header_link_hover }};
+}
+
+ul#links li a, div#gocart a {
+	color: {{ settings.nav_link_color }};
+}
+
+ul#links li a:hover, div#gocart a:hover {
+	color: {{ settings.nav_link_hover }};
+}
+
+div#overview ul {
+	background-color: {{ settings.overview_bg_color }};
+	border: 1px solid {{ settings.overview_border_color }};
+}
+
+div#overview h5, div#overview p {
+	color: {{ settings.overview_text_color }};
+}
+
+div#overview h3 {
+	color: {{ settings.overview_title_text_color }};
+}
+
+div#overview p a {
+	color: {{ settings.overview_link_color }};
+}
+
+div#overview p a:hover {
+	color: {{ settings.overview_link_hover }};
+}
+
+div#footer p {
+	color: {{ settings.footer_text_color }};
+}
+
+div#footer p a {
+	color: {{ settings.footer_link_color }};
+}
+
+div#footer p a:hover {
+	color: {{ settings.footer_link_hover }};
+}
+
+div#finder input.submit {
+	color: {{ settings.search_btn_text_color }};
+	font: bold 14px {{ settings.typography }};
+	background-color: {{ settings.search_btn_bg_color }};
+}
+
+div#finder input.submit:hover {
+	color: {{ settings.search_btn_hover_color }};
+	background-color: {{ settings.search_btn_bg_hover }};
+}
+
+/* End of Stylesheet */
