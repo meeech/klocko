@@ -9,3 +9,4 @@ Included
 --------
 
 * Modifications for a product image rollover. See this [post](http://post-to-come) for more info.
+* 

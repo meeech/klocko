@@ -1,0 +1,9 @@
+Everything Add To Cart
+======================
+
+The purpose of this mod is to make adding ajax add to cart buttons super easy.
+It allows for multiple forms on one page. 
+No ID on forms required.
+
+
+ 
