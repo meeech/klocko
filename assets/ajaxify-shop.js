@@ -14,7 +14,8 @@ var jQ = jQuery;
  *
  */
 var selectors = {
-    TOTAL_ITEMS: '.cart-total-items'
+    TOTAL_ITEMS: '.cart-total-items',
+    SUBMIT_ADD_TO_CART: 'input[type=image], input.submit-add-to-cart'
 };
 
 
@@ -31,7 +32,7 @@ var text = {
 jQ('form[action=/cart/add]').submit(function(e) {
     e.preventDefault();
     //Disable the Add To Cart button, add a disabled class. 
-    jQ(e.target).find('input[type=image]').attr('disabled', true).addClass('disabled');
+    jQ(e.target).find(selectors.SUBMIT_ADD_TO_CART).attr('disabled', true).addClass('disabled');
 
     //Can't use updateCartFromForm since you need the item added before you can update (otherwise, would have been more convenient)
     //So, in onItemAdded, we Shopify.getCart() to force the repaint of items in cart. 
@@ -51,7 +52,7 @@ Shopify.onItemAdded = function(line_item, form) {
     //Default behaviour for this modification:
     //When a Add To Cart form is clicked, we disable the button and apply a class of disabled. 
     //Here is where we remove the disabled class, and reactivate the button.
-    jQ(form).find('input[type=image]').attr('disabled', false).removeClass('disabled');
+    jQ(form).find(selectors.SUBMIT_ADD_TO_CART).attr('disabled', false).removeClass('disabled');
 
     //You can add any extra messaging you would want here. 
 
