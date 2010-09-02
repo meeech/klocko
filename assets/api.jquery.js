@@ -133,21 +133,27 @@ Shopify.addItem = function(variant_id, quantity, callback) {
   jQuery.ajax(params);
 };
 
+//Allow use of form element instead of id.
+//This makes it a bit more flexible. Every form doesn't need an id.
+//Once you are having someone pass in an id, might as well make it selector based, or pass in the element itself.
+//Since you are just wrapping it in a jq(). The same rationale is behind the change for updateCartFromForm
 // ---------------------------------------------------------
 // POST to cart/add.js returns the JSON of the line item.
 // ---------------------------------------------------------
-Shopify.addItemFromForm = function(form_id, callback) {
+//@param HTMLElement the form element which was submitted. Or you could pass in a string selector such as the form id. 
+//@param function callback callback fuction if you like, but I just override Shopify.onItemAdded() instead
+Shopify.addItemFromForm = function(form, callback) {
     var params = {
       type: 'POST',
       url: '/cart/add.js',
-      data: jQuery('#' + form_id).serialize(),
+      data: jQuery(form).serialize(),
       dataType: 'json',
       success: function(line_item) { 
         if ((typeof callback) === 'function') {
-          callback(line_item);
+          callback(line_item, form);
         }
         else {
-          Shopify.onItemAdded(line_item);
+          Shopify.onItemAdded(line_item, form);
         }
       },
       error: function(XMLHttpRequest, textStatus) {
