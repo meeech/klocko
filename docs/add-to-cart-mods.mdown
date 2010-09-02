@@ -1,27 +1,35 @@
 Everything Add To Cart
 ======================
 
-The purpose of this mod is to make adding ajax add to cart buttons super easy.
-It allows for multiple Add To Carts on one page. 
-Will turn any form with action=/cart/add into an ajax one
-No ID on forms required. 
+The purpose of this mod is to make adding ajax add to cart buttons super easy. 
 
-All theme mods are based on Solo theme. But the examples should be enough to apply to any theme with little changes.
+Features: 
 
-Step 
+* Turn any form with action=/cart/add into an ajax one
+* Multiple Add To Cart buttons on one page. 
 
-Step
-Add to theme.liquid
+The base theme I am modifying for this is the free [Solo](http://themes.shopify.com/themes/solo/styles/solo) theme. The walkthrough should be enough to help you apply to any theme with little changes.
 
-Get a copy of the my modified jQuery Shopify API [link]. Upload to your assets folder.
+We will start by Ajaxifying the default Add To Cart form that is on the product page. 
+The second part will deal with adding a Add To Cart whereever you have a product.
 
-This will load from Shopify. It is their jquery api. 
-{{ 'api.jquery.js' | asset_url | script_tag }}
+Begin
+-----
 
-This you will need to add to your assets folder. [link to commit of file]
-{{ 'add_to_cart.js' | asset_url | script_tag }}
+* Get a copy of my modified [jQuery Shopify API](http://github.com/meeech/klocko/blob/master/assets/api.jquery.js). Upload to your **assets** folder.
+* Get a copy of my [ajaxify-shop.js](http://github.com/meeech/klocko/blob/master/assets/ajaxify-shop.js). Upload to your **assets** folder.
 
-Edit: theme.liquid (and anywhere else where you have Cart Item count.)
+Edit **layout/theme.liquid**
+----------------------------
+
+At the end of your theme.liquid add the two scripts you just uploaded to your asset folder like so:
+
+    </body>
+    {{ 'api.jquery.js' | asset_url | script_tag }}
+    {{ 'ajaxify-shop.js' | asset_url | script_tag }}
+    </html>
+
+Next, we prepare the template so we can update the number of items in the cart after an item has been added.
 
 Wrap 
 
@@ -30,21 +38,37 @@ Wrap
 like so:
 
     <span class="cart-total-items"><span class="count">{{ cart.item_count }}</span> {{ cart.item_count | pluralize: "Item", "Items" }}</span>
+
+The markup can be anything you want. The important part:
+
+**class="cart-total-items"** : Any element with this class will have its HTML updated when something is added to the cart. This will update the span with the number of items in the cart, as well as word Item/Items.  The HTML that will be dropped into this element will be like: 
+
+    <span class="count">5</span> Items
+    <span class="count">1</span> Item
+    <span class="count">0</span> Items
+
+You can see the end result of these modifications in my [theme.liquid](http://github.com/meeech/klocko/blob/master/layout/theme.liquid)
+
+Edit **assets/theme.css.liquid**
+--------------------------------
+
+When the add to cart button is clicked, we disable the button, and add the class of disabled, so you can style the button when it's inactive.
+
+So, open **assets/theme.css.liquid** and at the end add
+
+    /* Disabled input */
+    input.disabled {
+        opacity: .5;
+    }
     
-You can style against this class, or leave it plain. This will update the span with the number of items in the cart whenever it changes, as well as word Item/Items. 
-
-
-Step: CSS
-
-    * Add disabled class
-
+This will make the button get lighter. You can of course style however you like. You can view my [theme.css.liquid](http://github.com/meeech/klocko/blob/master/assets/theme.css.liquid).
 
 At this point, if you visit a product page, you should be able to Add To Cart and it all be ajaxy goodness.
 
-Now, we will make it easy to add a Add To Cart button for a bunch of items.
- 
 Adding a Add to Cart everywhere
 -------------------------------
+
+Now, we will make it easy to add a Add To Cart button for a bunch of items.
 
 For this example, we will place an add to cart button on every item on our collections page.
 
