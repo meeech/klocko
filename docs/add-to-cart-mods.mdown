@@ -35,3 +35,22 @@ You can style against this class, or leave it plain. This will update the span w
 
 
 Step: CSS
+
+At this point, if you visit a product page, you should be able to Add To Cart and it all be ajaxy goodness.
+
+Now, we will make it easy to add a Add To Cart button for a bunch of items.
+ 
+Adding a Add to Cart everywhere
+-------------------------------
+
+For this example, we will place an add to cart button on every item on our collections page.
+
+Step: Create snippets/add-to-cart.liquid
+
+First step, we only want one cart form to use everywhere. So, we will use the form the Solo theme provides on the product.liquid
+
+Open product.liquid, and copy out the form to a new snippet/add-to-cart.liquid
+
+
+
+You can see it in action here: http://klocko-and-sons3230.myshopify.com/collections/related
