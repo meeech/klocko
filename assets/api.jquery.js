@@ -15,7 +15,10 @@ for its callback to send your 3rd request, etc.
  *  We make some mods. consider them feedback :) See comments/commit messages
  * Changes include:
  *      addItemFromForm: allow for passing in of form element, OR string selector
+ *      updateCartFromForm: allow for passing in of form element, OR string selector
  *
+ * To see how I make use of these changes, see [link to ajaxify-shop.js] 
+ * 
  * Sept 02, 2010
  */
 if ((typeof Shopify) === 'undefined') {
@@ -134,13 +137,13 @@ Shopify.addItem = function(variant_id, quantity, callback) {
   jQuery.ajax(params);
 };
 
+// ---------------------------------------------------------
+// POST to cart/add.js returns the JSON of the line item.
+// ---------------------------------------------------------
 //Allow use of form element instead of id.
 //This makes it a bit more flexible. Every form doesn't need an id.
 //Once you are having someone pass in an id, might as well make it selector based, or pass in the element itself.
 //Since you are just wrapping it in a jq(). The same rationale is behind the change for updateCartFromForm
-// ---------------------------------------------------------
-// POST to cart/add.js returns the JSON of the line item.
-// ---------------------------------------------------------
 //@param HTMLElement the form element which was submitted. Or you could pass in a string selector such as the form id. 
 //@param function callback callback fuction if you like, but I just override Shopify.onItemAdded() instead
 Shopify.addItemFromForm = function(form, callback) {
@@ -269,18 +272,24 @@ Shopify.clear = function(callback) {
 // ---------------------------------------------------------
 // POST to cart/update.js returns the cart in JSON.
 // ---------------------------------------------------------
-Shopify.updateCartFromForm = function(form_id, callback) {
+//Allow use of form element instead of id.
+//This makes it a bit more flexible. Every form doesn't need an id.
+//Once you are having someone pass in an id, might as well make it selector based, or pass in the element itself, 
+//since you are just wrapping it in a jq().
+//@param HTMLElement the form element which was submitted. Or you could pass in a string selector such as the #form_id. 
+//@param function callback callback fuction if you like, but I just override Shopify.onCartUpdate() instead
+Shopify.updateCartFromForm = function(form, callback) {
   var params = {
     type: 'POST',
     url: '/cart/update.js',
-    data: jQuery('#' + form_id).serialize(),
+    data: jQuery(form).serialize(),
     dataType: 'json',
     success: function(cart) {
       if ((typeof callback) === 'function') {
-        callback(cart);
+        callback(cart, form);
       }
       else {
-        Shopify.onCartUpdate(cart);
+        Shopify.onCartUpdate(cart, form);
       }
     },
     error: function(XMLHttpRequest, textStatus) {
