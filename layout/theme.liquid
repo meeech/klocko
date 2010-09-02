@@ -48,7 +48,9 @@
 			<!-- END LINKS -->
 			<!-- START GOCART -->
 			<div id="gocart">
-				<p><a href="/cart"{% if template == "cart" %} class="active"{% endif %}><span class="cart-total-items"><span class="count">{{ cart.item_count }}</span> {{ cart.item_count | pluralize: "Item", "Items" }}</span></a></p>
+				<p><a href="/cart"{% if template == "cart" %} class="active"{% endif %}>
+				    <span class="cart-total-items"><span class="count">{{ cart.item_count }}</span> {{ cart.item_count | pluralize: "Item", "Items" }}</span>
+				</a></p>
 			</div>
 			<!-- END GOCART -->
 			<!-- END NAV -->
