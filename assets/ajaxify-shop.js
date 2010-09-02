@@ -17,37 +17,6 @@ var text = {
     ITEMS: 'Items'
 };
 
-//Override the Shopify default: Allow use of form element instead of id.
-//
-//This makes it a bit more flexible. Every form doesn't need an id.
-//Once you are having someone pass in an id, might as well make it selector based, or pass in the element itself.
-//Since you are just wrapping it in a jq(). The same rationale is behind the change for updateCartFromForm
-// ---------------------------------------------------------
-// POST to cart/add.js returns the JSON of the line item.
-// ---------------------------------------------------------
-//@param HTMLElement the form element which was submitted. Or you could pass in a string selector such as the form id. 
-//@param function callback callback fuction if you like, but I just override Shopify.onItemAdded() instead
-Shopify.addItemFromForm = function(form, callback) {
-    var params = {
-      type: 'POST',
-      url: '/cart/add.js',
-      data: jQuery(form).serialize(),
-      dataType: 'json',
-      success: function(line_item) { 
-        if ((typeof callback) === 'function') {
-          callback(line_item);
-        }
-        else {
-          Shopify.onItemAdded(line_item, form);
-        }
-      },
-      error: function(XMLHttpRequest, textStatus) {
-        Shopify.onError(XMLHttpRequest, textStatus);
-      }
-    };
-    jQuery.ajax(params);
-};
-
 //When an item is added to the cart, we re-enable the button.
 //This is where you would want to put any flash messaging, for example.
 //@param object line_item
