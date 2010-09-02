@@ -36,6 +36,9 @@ You can style against this class, or leave it plain. This will update the span w
 
 Step: CSS
 
+    * Add disabled class
+
+
 At this point, if you visit a product page, you should be able to Add To Cart and it all be ajaxy goodness.
 
 Now, we will make it easy to add a Add To Cart button for a bunch of items.
@@ -47,10 +50,16 @@ For this example, we will place an add to cart button on every item on our colle
 
 Step: Create snippets/add-to-cart.liquid
 
-First step, we only want one cart form to use everywhere. So, we will use the form the Solo theme provides on the product.liquid
+First step, we only want one cart form to use everywhere. So, let's create a simple form to accomplish this
 
-Open product.liquid, and copy out the form to a new snippet/add-to-cart.liquid
+create the file **snippets/add-to-cart.liquid** [link]
 
-
+We will leave in the Variants dropdown for now, though I think it clutters things. 
 
 You can see it in action here: http://klocko-and-sons3230.myshopify.com/collections/related
+
+
+Limitations
+-----------
+
+* The add to cart form doesn't account for variants. It will just use the first variant on a product. While it's possible to make it variant aware, I haven't had the need yet, and it clutters the ui a bit. Let me know if you need that functionality, maybe something can be arranged.

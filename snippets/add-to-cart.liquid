@@ -1,20 +1,7 @@
 <form method="post" action="/cart/add">
-    {% if product.variants.size > 1 %}
-	<!-- START VARIANTS -->
-	<div class="variants">
-		<div class="border">
-			<select name="id">{% for variant in product.variants %}{% if variant.available %}
-				<option value="{{ variant.id }}">{{ variant.title | escape }} ({{ variant.price | money }})</option>{% else %}
-				<option value="{{ variant.id }}" disabled="disabled">{{ variant.title | escape }} ({{ variant.price | money }}) - SOLD OUT</option>{% endif %}{% endfor %}
-			</select>
-		</div>
-	</div>
-	<!-- END VARIANTS -->
-	{% else %}
-	    {% for variant in product.variants %}
-	        <input type="hidden" name="id" value="{{ variant.id }}" />
-	    {% endfor %}
-	{% endif %}
+    {% for variant in product.variants limit:1 %}
+        <input type="hidden" name="id" value="{{ variant.id }}" />
+    {% endfor %}
 	<!-- START BUY -->
 	<div class="clear">
 	    {% if product.available %}
