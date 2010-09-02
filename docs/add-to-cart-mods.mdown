@@ -2,8 +2,34 @@ Everything Add To Cart
 ======================
 
 The purpose of this mod is to make adding ajax add to cart buttons super easy.
-It allows for multiple forms on one page. 
-No ID on forms required.
+It allows for multiple Add To Carts on one page. 
+Will turn any form with action=/cart/add into an ajax one
+No ID on forms required. 
+
+All theme mods are based on Solo theme. But the examples should be enough to apply to any theme with little changes.
+
+Step 
+
+Step
+Add to theme.liquid
+
+This will load from Shopify. It is their jquery api. 
+{{ 'api.jquery.js' | shopify_asset_url | script_tag }}
+
+This you will need to add to your assets folder. [link to commit of file]
+{{ 'add_to_cart.js' | asset_url | script_tag }}
+
+Edit: theme.liquid (and anywhere else where you have Cart Item count.)
+
+Wrap 
+
+    {{ cart.item_count }} {{ cart.item_count | pluralize: "Item", "Items" }}
+
+like so:
+
+    <span class="cart-total-items"><span class="count">{{ cart.item_count }}</span> {{ cart.item_count | pluralize: "Item", "Items" }}</span>
+    
+You can style against this class, or leave it plain. This will update the span with the number of items in the cart whenever it changes, as well as word Item/Items. 
 
 
- 
+Step: CSS
