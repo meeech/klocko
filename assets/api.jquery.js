@@ -12,6 +12,7 @@ for its callback to send your 3rd request, etc.
 
 /**
  * Modified by Mitchell Amihod 
+ *  We make some mods. consider them feedback :) See comments/commit messages
  * Changes include:
  *      addItemFromForm: allow for passing in of form element, OR string selector
  *

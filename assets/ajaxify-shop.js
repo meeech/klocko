@@ -9,10 +9,19 @@ jQuery(document).ready(function() {
 
 var jQ = jQuery;
 
+/**
+ * Collection of Selectors for various pieces on the page we need to update 
+ *
+ */
 var selectors = {
     TOTAL_ITEMS: '.cart-total-items'
 };
 
+
+/**
+ * Collection of text strings. This is where you would change for a diff language, for example. 
+ *
+ */
 var text = {
     ITEM: 'Item', 
     ITEMS: 'Items'
@@ -21,11 +30,11 @@ var text = {
 //Attach Submit Handler to all forms with the /cart/add action. 
 jQ('form[action=/cart/add]').submit(function(e) {
     e.preventDefault();
-    //Can't use updateCartFromForm since you need the item added before you can update (otherwise, would have been more convenient)
-    //So, in onItemAdded, we Shopify.getCart() to force the repaint of items in cart. 
-
     //Disable the Add To Cart button, add a disabled class. 
     jQ(e.target).find('input[type=image]').attr('disabled', true).addClass('disabled');
+
+    //Can't use updateCartFromForm since you need the item added before you can update (otherwise, would have been more convenient)
+    //So, in onItemAdded, we Shopify.getCart() to force the repaint of items in cart. 
     Shopify.addItemFromForm(e.target);
 });
 
@@ -50,8 +59,15 @@ Shopify.onItemAdded = function(line_item, form) {
     Shopify.getCart();
 };
 
-//Define onCartUpdate. This updates the N item/items left in your cart
-//@param object the cart object. 
+/**
+ * This updates the N item/items left in your cart
+ * 
+ * It's setup to match the HTML used to display the Cart Count on Load. If you change that (in your theme.liquid) 
+ * you will probably want to change the message html here. 
+ * This will update the HTML in ANY element with the class defined in selectors.TOTAL_ITEMS
+ *
+ * @param object the cart object. 
+ */
 Shopify.onCartUpdate = function(cart) {    
     var message = '<span class="count">'+cart.item_count+'</span> ' +
                     ((cart.item_count == 1) ? text.ITEM : text.ITEMS );
@@ -59,19 +75,13 @@ Shopify.onCartUpdate = function(cart) {
 };
 
 //What to display when there is an error. You tell me?! I've left in a commented out example.
+// You can tie this in to any sort of flash messages, or lightbox, or whatnot you want.
 Shopify.onError = function(XMLHttpRequest, textStatus) {
   // Shopify returns a description of the error in XMLHttpRequest.responseText.
   // It is JSON.
   // Example: {"description":"The product 'Amelia - Small' is already sold out.","status":500,"message":"Cart Error"}
   // var data = eval('(' + XMLHttpRequest.responseText + ')');
   // errorMessage(data.message + '(' + data.status  + '): ' + data.description);
-};
-
-var testErrorMessage = function() {
-    var errorTest = {
-        responseText : '{"description":"The product Amelia - Small is already sold out.","status":500,"message":"Cart Error"}'
-    };
-    Shopify.onError(errorTest, 500);
 };
 
 //End Wrapper    
