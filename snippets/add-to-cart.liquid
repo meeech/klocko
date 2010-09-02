@@ -19,7 +19,7 @@
 	<div class="clear">
 	    {% if product.available %}
 		    <h2><span>{{ product.price | money }}</span>{% if product.compare_at_price_max > product.price %} <del>{{ product.compare_at_price_max | money }}</del>{% endif %}</h2>
-		    <input class="submit-add-to-cart" type="submit" value="Add To Cart"/>
+		    <input class="submit-add-to-cart" type="submit" value="Add To Cart" />
 		{% else %}
 		    <h6>Sold Out</h6>
 		{% endif %}
