@@ -10,6 +10,13 @@ for its callback to send your 3rd request, etc.
 
 */
 
+/**
+ * Modified by Mitchell Amihod 
+ * Changes include:
+ *      addItemFromForm: allow for passing in of form element, OR string selector
+ *
+ * Sept 02, 2010
+ */
 if ((typeof Shopify) === 'undefined') {
   Shopify = {};
 }
@@ -105,7 +112,7 @@ Shopify.resizeImage = function(image, size) {
 // POST to cart/add.js returns the JSON of the line item associated with the added item.
 // -------------------------------------------------------------------------------------
 Shopify.addItem = function(variant_id, quantity, callback) {
-  var quantity = quantity || 1;
+  quantity = quantity || 1;
   var params = {
     type: 'POST',
     url: '/cart/add.js',
