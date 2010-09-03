@@ -89,6 +89,8 @@ And you're done.
 
 As you may have guessed by now, you can view this theme in it's entirety on [github](http://github.com/meeech/klocko).
 
+feedback always welcome,
+
 m
 
 Known Limitations
