@@ -1,3 +1,4 @@
+<markdown>
 Everything Add To Cart
 ======================
 
@@ -5,24 +6,26 @@ The purpose of this mod is to make adding ajax add to cart buttons super easy.
 
 Features: 
 
-* Turn any form with action=/cart/add into an ajax one
-* Multiple Add To Cart buttons on one page. 
+* Turn any form with action=/cart/add into an ajax action
+* Multiple Add To Cart buttons on one page
 
 The base theme I am modifying for this is the free [Solo](http://themes.shopify.com/themes/solo/styles/solo) theme. The walkthrough should be enough to help you apply to any theme with little changes.
 
-We will start by Ajaxifying the default Add To Cart form that is on the product page. 
+We will start by ajaxifying the default Buy This form that is on the product.liquid template. 
 The second part will deal with adding a Add To Cart whereever you have a product.
 
 Begin
 -----
 
-* Get a copy of my modified [jQuery Shopify API](http://github.com/meeech/klocko/blob/master/assets/api.jquery.js). Upload to your **assets** folder.
+* Get a copy of my modified [jQuery Shopify API](http://github.com/meeech/klocko/blob/master/assets/api.jquery.js). Upload to your **assets** folder. 
 * Get a copy of my [ajaxify-shop.js](http://github.com/meeech/klocko/blob/master/assets/ajaxify-shop.js). Upload to your **assets** folder.
+
+<aside>The contents of those files will be the subject of a later post, but you can read the source, it's commented.</aside>
 
 Edit **layout/theme.liquid**
 ----------------------------
 
-At the end of your theme.liquid add the two scripts you just uploaded to your asset folder like so:
+At the bottom of your **layout/theme.liquid** add the two scripts you just uploaded to your assets folder:
 
     </body>
     {{ 'api.jquery.js' | asset_url | script_tag }}
@@ -39,13 +42,13 @@ like so:
 
     <span class="cart-total-items"><span class="count">{{ cart.item_count }}</span> {{ cart.item_count | pluralize: "Item", "Items" }}</span>
 
-The markup can be anything you want. The important part:
+You can surround the above fragment with any markup you want. The important part:
 
 **class="cart-total-items"** : Any element with this class will have its HTML updated when something is added to the cart. This will update the span with the number of items in the cart, as well as word Item/Items.  The HTML that will be dropped into this element will be like: 
 
-    <span class="count">5</span> Items
-    <span class="count">1</span> Item
-    <span class="count">0</span> Items
+* `<span class="count">5</span> Items`
+* `<span class="count">1</span> Item`
+* `<span class="count">0</span> Items`
 
 You can see the end result of these modifications in my [theme.liquid](http://github.com/meeech/klocko/blob/master/layout/theme.liquid)
 
@@ -54,36 +57,43 @@ Edit **assets/theme.css.liquid**
 
 When the add to cart button is clicked, we disable the button, and add the class of disabled, so you can style the button when it's inactive.
 
-So, open **assets/theme.css.liquid** and at the end add
+So, open **assets/theme.css.liquid** and add.
 
     /* Disabled input */
     input.disabled {
         opacity: .5;
     }
-    
+
 This will make the button get lighter. You can of course style however you like. You can view my [theme.css.liquid](http://github.com/meeech/klocko/blob/master/assets/theme.css.liquid).
 
-At this point, if you visit a product page, you should be able to Add To Cart and it all be ajaxy goodness.
+At this point, if you visit a [product page](http://klocko-and-sons3230.myshopify.com/collections/all/products/steel-hand) and click on the Buy This, you should have it all be goodness.
 
-Adding a Add to Cart everywhere
+But wait! there's more... 
+
+Adding an Add to Cart everywhere
 -------------------------------
 
-Now, we will make it easy to add a Add To Cart button for a bunch of items.
+Now, we make it easy to place an Add To Cart button for a bunch of items on a page.
 
-For this example, we will place an add to cart button on every item on our collections page.
+For this example, we will place an add to cart button on every item on our collections page. You can see it in action on my [collection page](http://klocko-and-sons3230.myshopify.com/collections/all).
 
-Step: Create snippets/add-to-cart.liquid
+Only one add to cart form to use everywhere. So a simple form is created as a snippet.
 
-First step, we only want one cart form to use everywhere. So, let's create a simple form to accomplish this
+* upload [snippets/add-to-cart.liquid](http://github.com/meeech/klocko/blob/master/snippets/add-to-cart.liquid) to your **snippets**.  
+It uses the first variant of an item if there are more than one.  
+You can style the form however you like. The submit button can be type=image if desired, and everything should keep working fine.
 
-create the file **snippets/add-to-cart.liquid** [link]
+* edit **templates/collection.liquid**. At Right before the closing `<li>` on [line 19](http://github.com/meeech/klocko/blob/master/templates/collection.liquid#L19) add `{% include "add-to-cart" %}`
 
-We will leave in the Variants dropdown for now, though I think it clutters things. 
+And you're done.
 
-You can see it in action here: http://klocko-and-sons3230.myshopify.com/collections/related
+As you may have guessed by now, you can view this theme in it's entirety on [github](http://github.com/meeech/klocko).
 
+m
 
-Limitations
+Known Limitations
 -----------
 
-* The add to cart form doesn't account for variants. It will just use the first variant on a product. While it's possible to make it variant aware, I haven't had the need yet, and it clutters the ui a bit. Let me know if you need that functionality, maybe something can be arranged.
+* The add to cart form doesn't account for variants. It will just use the first variant on a product. While it's possible to make it variant aware, I haven't had the need yet, it clutters the ui a bit. Let me know if you need that functionality, maybe something can be arranged.
+
+</markdown>
