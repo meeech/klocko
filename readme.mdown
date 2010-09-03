@@ -8,5 +8,5 @@ This is where I'll experiment, share changes and whatnot. It's the theme I use f
 Included
 --------
 
+* Make Buy This ajax enabled & Add an Add to Cart for every product on a page, easily. 
 * Modifications for a product image rollover. See this [post](http://post-to-come) for more info.
-* 
