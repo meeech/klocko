@@ -4,6 +4,7 @@
  * @uses Modified Shopify jQuery API (link to it)
  *
  */
+
 jQuery(document).ready(function() { 
 //Begin Wrapper
 
@@ -29,7 +30,7 @@ var text = {
 };
 
 //Attach Submit Handler to all forms with the /cart/add action. 
-jQ('form[action=/cart/add]').submit(function(e) {
+jQ('form[action*=/cart/add]').submit(function(e) {
     e.preventDefault();
     //Disable the Add To Cart button, add a disabled class. 
     jQ(e.target).find(selectors.SUBMIT_ADD_TO_CART).attr('disabled', true).addClass('disabled');
