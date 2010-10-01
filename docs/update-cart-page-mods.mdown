@@ -1,0 +1,83 @@
+[ Final version of this doc here; See: http://www.plankdesign.com/blog/2010/10/ajaxed-shopify-cart-page/ ]
+
+Ajax'ed Cart Page
+=================
+
+[Last time](http://www.plankdesign.com/blog/2010/09/everything-add-to-cart/), we looked at placing an ajax'ed Add to Cart button everywhere. 
+
+The next place we want to ajax-up will be the [Cart](http://klocko-and-sons3230.myshopify.com/cart) page. When the user updates the cart from that page, we will want to do it without a page load.
+
+The base theme I am modifying for this is the free [Solo](http://themes.shopify.com/themes/solo/styles/solo) theme. The walkthrough should be enough to help you apply to any theme with little changes. This builds off the work done in the [previous piece](http://www.plankdesign.com/blog/2010/09/everything-add-to-cart/), so if you haven't done that yet, you might want to.
+
+**Begin**
+
+* Get a copy of my modified [jQuery Shopify API](http://github.com/meeech/klocko/blob/master/assets/api.jquery.js). Upload to your **assets** folder. 
+* Get a copy of my [ajaxify-shop.js](http://github.com/meeech/klocko/blob/master/assets/ajaxify-shop.js). Upload to your **assets** folder. If you did the previous tut on ajax add to cart, you will need to go and fetch a new copy.
+
+There is really only one template to edit.
+
+**templates/cart.liquid**
+-------------------------
+
+Start by modifying the markup. We need to put some hooks, so we can update info on the page.
+
+At the bottom of **cart.liquid** you will see
+
+    </form>{% else %}
+    <p id="empty">Your shopping cart is empty. <a href="/collections/all">Continue shopping...</a></p>{% endif %}
+
+Change it to
+
+    </form>
+    {% endif %}
+    <p id="empty" style="{% if cart.item_count > 0 %}display: none;{% endif %}">Your shopping cart is empty. <a href="/collections/all">Continue shopping...</a></p>
+
+This has the effect of putting the "Your cart empty..." message on the page, and hiding it from view if there's any items in your cart. Doing this, the element remains on the page, so we can hide the form and reveal the message if someone removes all the items from their cart on this page.
+
+You can change the `<p>` tag to something else (div, span, etc...) and have more complex html inside. The important part to preserve is the `id="empty"` and the inline style to hide the element.
+
+Find `<h3>Total: <span>{{ cart.total_price | money }}</span></h3>`
+
+And add a  `class="cart-total-price"` to the span, 
+
+`<h3>Total: <span class="cart-total-price">{{ cart.total_price | money }}</span></h3>`
+
+Any element you add  `class="cart-total-price"` will be updated with the cart total $ whenever the cart changes. Keep reading - there's a Bonus Round for more on this at the end.
+
+Now we need to put some hooks so we know what to change in the form itself. Now, the default Cart form here uses tables for layout, but you could easily change it all to any sort of markup you want, and just apply these classes. 
+
+Find
+
+    <!-- START PRODUCT {{ forloop.index }} -->
+    <tr class="{% cycle "odd", "even" %}">
+
+And add the class `cart-line-item` to the row. 
+
+    <tr class="cart-line-item {% cycle "odd", "even" %}">
+        
+This will be useful to know what row to remove entirely if the items are set to 0.
+    
+Then find `<td><strong>{{ item.line_price | money }}</strong></td>`. This is where the subtotal for the items in this row resides. We will add a unique class to the element holding the price - this is how we will know which prices to update when changes are made. So add `class="cart_line_item_price_{{ item.variant.id }}"` to the `strong` tag, so the line should now look like this: 
+
+`<td><strong class="cart-line-item-price-{{ item.variant.id }}">{{ item.line_price | money }}</strong></td>`
+
+And thats it. You should be good.
+
+**Bonus Round**
+
+The script is now rigged up to update any element with the class of `cart-total-price`. So let's go add it to the nav bar, up near where the number of items is listed. 
+
+Open **layout/theme.liquid**, find the `div id="gocart"`, and add 
+
+`<span class="cart-total-price">{{ cart.total_price }}</span>`
+
+You should end up with something like this inside #gocart:
+
+    <p><a href="/cart"{% if template == "cart" %} class="active"{% endif %}>
+        <span class="cart-total-items"><span class="count">{{ cart.item_count }}</span> {{ cart.item_count | pluralize: "Item", "Items" }}</span>
+        <span class="cart-total-price">{{ cart.total_price }}</span>
+    </a></p>
+    
+You can place that span anywhere you want really. 
+
+I'll leave the styling to you.

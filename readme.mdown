@@ -9,4 +9,5 @@ Included
 --------
 
 * Make Buy This ajax enabled & Add an Add to Cart for every product on a page, easily. [post](http://www.plankdesign.com/blog/2010/09/everything-add-to-cart/)
+* Make Cart page ajax'ed [post](http://www.plankdesign.com/blog/2010/10/ajaxed-shopify-cart-page/)
 * Modifications for a product image rollover. See this [post](http://post-to-come) for more info.

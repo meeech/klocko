@@ -1,4 +1,5 @@
-<h1>My Cart</h1>{% if cart.item_count > 0 %}
+<h1>My Cart</h1>
+{% if cart.item_count > 0 %}
 <form action="/cart" method="post" name="cartform">
 	<!-- START TABLE -->
 	<table cellpadding="0" cellspacing="0">
@@ -12,7 +13,7 @@
 		</tr>
 		<!-- END HEADERS -->{% for item in cart.items %}
 		<!-- START PRODUCT {{ forloop.index }} -->
-		<tr class="{% cycle "odd", "even" %}">
+		<tr class="cart-line-item {% cycle "odd", "even" %}">
 			<td class="pic">
 				<div><a href="{{ item.product.url | within: collections.all }}"><img src="{{ item.product.images[0] | product_img_url: "thumb" }}" alt="{{ item.title | escape }}" /></a></div>
 			</td>
@@ -22,7 +23,7 @@
 			<td>{{ item.price | money }}</td>
 			<td><input type="text" class="field" name="updates[]" id="updates_{{ item.variant.id }}" value="{{ item.quantity }}" /></td>
 			<td class="remove"><a href="/cart/change/{{ item.variant.id }}?quantity=0">Remove</a></td>
-			<td><strong>{{ item.line_price | money }}</strong></td>
+			<td><strong class="cart-line-item-price-{{ item.variant.id }}">{{ item.line_price | money }}</strong></td>
 		</tr>
 		<!-- END PRODUCT {{ forloop.index }} -->{% endfor %}
 	</table>
@@ -37,7 +38,7 @@
 		<!-- END NOTES -->{% endif %}
 		<!-- START TOTAL -->
 		<div id="total">
-			<h3>Total: <span>{{ cart.total_price | money }}</span></h3>
+			<h3>Total: <span class="cart-total-price">{{ cart.total_price | money }}</span></h3>
 			<!-- START CHECKOUT -->
 			<div id="checkout" class="clear">
 				<input type="image" src="{{ "checkout.png" | asset_url }}" alt="CHECKOUT" name="checkout" class="checkout" />
@@ -48,5 +49,6 @@
 		<!-- END TOTAL -->
 	</div>
 	<!-- END COMPLETE -->
-</form>{% else %}
-<p id="empty">Your shopping cart is empty. <a href="/collections/all">Continue shopping...</a></p>{% endif %}
+</form>
+{% endif %}
+<p id="empty" style="{% if cart.item_count > 0 %}display: none;{% endif %}">Your shopping cart is empty. <a href="/collections/all">Continue shopping...</a></p>

@@ -50,6 +50,7 @@
             <div id="gocart">
                 <p><a href="/cart"{% if template == "cart" %} class="active"{% endif %}>
                     <span class="cart-total-items"><span class="count">{{ cart.item_count }}</span> {{ cart.item_count | pluralize: "Item", "Items" }}</span>
+                    <span class="cart-total-price">{{ cart.total_price | money }}</span>
                 </a></p>
             </div>
             <!-- END GOCART -->
