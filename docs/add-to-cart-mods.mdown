@@ -79,11 +79,13 @@ For this example, we will place an add to cart button on every item on our colle
 Only one add to cart form to use everywhere. So a simple form is created as a snippet.
 
 * upload [snippets/add-to-cart.liquid](http://github.com/meeech/klocko/blob/master/snippets/add-to-cart.liquid) to your **snippets**.  
-It uses the first variant of an item if there are more than one.  
+It includes a variants drop-down which will show up if you have more than 1 variant. You can easily comment that out ([it's clearly marked](https://github.com/meeech/klocko/blob/master/snippets/add-to-cart.liquid#L12-19)) and it will default to the first variant. 
 You can style the form however you like. The submit button can be type=image if desired, and everything should keep working fine.
 
 * edit **templates/collection.liquid**. At Right before the closing `<li>` on [line 19](http://github.com/meeech/klocko/blob/master/templates/collection.liquid#L19) add   
 `{% include "add-to-cart" %}`
+
+I should point out that add-to-cart.liquid is just a regular add product form. Any valid change you could make to an add product form, you can just drop in here. If you look at the history of [add-to-cart.liquid](https://github.com/meeech/klocko/blob/master/snippets/add-to-cart.liquid#L12-19), you'll see this is exactly what I did with the variants drop-down. It's pretty much a copy-paste of the code from the default [product](https://github.com/meeech/klocko/blob/master/templates/product.liquid#L22-25) page. 
 
 And you're done.
 
@@ -92,8 +94,3 @@ As you may have guessed by now, you can view this theme in it's entirety on [git
 feedback always welcome,
 
 m
-
-Known Limitations
------------------
-
-* The add to cart form doesn't account for variants. It will just use the first variant on a product. While it's possible to make it variant aware, I haven't had the need yet, it clutters the ui a bit. Let me know if you need that functionality, maybe something can be arranged.
