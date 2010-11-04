@@ -1,8 +1,8 @@
-When working on the [WowweeTechStore](http://www.wowweetechshop.com/), we decided to begin with the free [Solo](http://themes.shopify.com/themes/solo/styles/solo) template, and modify it to our clients needs. The goal here is to add the functionality while changing as little of the default theme as possible.
+When working on the [WowweeTechShop](http://www.wowweetechshop.com/), we decided to begin with the free [Solo](http://themes.shopify.com/themes/solo/styles/solo) theme, and modify it to our clients needs. 
 
 One change we wanted was to not use the [lightbox](http://solo.myshopify.com/collections/all/products/anson-chair) on product pages when a product has multiple images. Rather, we wanted something that displayed thumbs of all the product images, and when a user clicks on the thumbs, it replaces the current image. You can view the end result on the [Swivel Product Page](http://www.wowweetechshop.com/collections/cinemin/products/cinemin-swivel).
 
-In the end, it was a fairly simple procedure, and should be easy enough to implement for any theme. In this example, we will walk thru modifying the Solo theme. Uses jQuery 1.4.2 or greater, so if you trying to use this on another theme, make sure you have that. 
+In the end, it was a fairly simple procedure, and should be easy enough to implement for any theme. In this example, we will walk thru modifying the Solo theme. The goal here is to add the functionality while changing as little of the default theme as possible. Uses jQuery 1.4.2 or greater, so if you trying to use this on another theme, make sure you have that. 
 
 I've applied these changes to my [sample theme](https://github.com/meeech/klocko), so you can follow along. 
 
@@ -149,6 +149,8 @@ And finally
 And that's pretty much it. I've kept the CSS in this example barebones - just the essentials. We did a bit more CSS work for the version on the [WowWeeTechShop](http://www.wowweetechshop.com).
 
 You can also fetch all this from my test theme up on [github](https://github.com/meeech/klocko).
+
+Most of the instructions here aren't actually specific to Shopify Themes - you can use it for any page where you need this type of effect. 
 
 Troubleshooting
 ---------------
