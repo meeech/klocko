@@ -1,0 +1,156 @@
+When working on the [WowweeTechStore](http://www.wowweetechshop.com/), we decided to begin with the free [Solo](http://themes.shopify.com/themes/solo/styles/solo) template, and modify it to our clients needs. The goal here is to add the functionality while changing as little of the default theme as possible.
+
+One change we wanted was to not use the [lightbox](http://solo.myshopify.com/collections/all/products/anson-chair) on product pages when a product has multiple images. Rather, we wanted something that displayed thumbs of all the product images, and when a user clicks on the thumbs, it replaces the current image. You can view the end result on the [Swivel Product Page](http://www.wowweetechshop.com/collections/cinemin/products/cinemin-swivel).
+
+In the end, it was a fairly simple procedure, and should be easy enough to implement for any theme. In this example, we will walk thru modifying the Solo theme. Uses jQuery 1.4.2 or greater, so if you trying to use this on another theme, make sure you have that. 
+
+I've applied these changes to my [sample theme](https://github.com/meeech/klocko), so you can follow along. 
+
+Step 1: Modify **templates/product.liquid**
+-------------------------------------------
+
+Now, we will replace all the code between 
+
+    <!-- START IMAGES --> and <!-- END IMAGES --> 
+
+([Example](https://github.com/meeech/klocko/blob/3082d0fea87b1ef8d9256a6c9fe6a23682287a13/templates/product.liquid#L5-16))
+
+with
+
+    {% if product.images.size > 0 %}
+        {% include 'product-image-rollover' %}
+    {% endif %}
+
+([Example](https://github.com/meeech/klocko/blob/master/templates/product.liquid#L5-7))
+
+This way, we don't bother to include the code for the image viewer when a product has no images.
+
+Don't worry that **product-image-rollover.liquid** doesn't yet exist. We'll make it in the next step.
+
+Step 2: Create a new snippet called **product-image-rollover.liquid**
+---------------------------------------------------------------------
+
+Now we make the snippet we included in the last step. This is done to make things a bit more manageable. So, in your **snippets** folder, create **product-image-rollover.liquid** (You can copy from below, or get it [here](https://github.com/meeech/klocko/blob/master/snippets/product-image-rollover.liquid))
+
+    <div id="images">
+        <!-- START IMAGE -->
+        <div id="image" class="clear">
+            <img src="{{ product.images[0] | product_img_url: "large" }}" alt="{{ product.title | escape }}" />
+        </div>
+        <!-- END IMAGE -->
+        <!-- START THUMBS -->
+        <div id="thumbs">
+            {% if product.images.size > 1 %}
+                {% for image in product.images %}
+                    <p><a {% if forloop.first %} class="active"{% endif %} href="{{ image | product_img_url: "large" }}">
+                        <img src="{{ image | product_img_url: "thumb" }}" alt="{{ product.title | escape }}" />
+                    </a></p>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <!-- END THUMBS -->
+    </div>
+    {{ 'product-image-rollover.js' | asset_url | script_tag }}
+
+The [markup](https://github.com/meeech/klocko/blob/0efd5673e54b076ce290d01871cf13bf53b484a1/snippets/product-image-rollover.liquid#L4) will by default show the first image associated with a product, nice and large. 
+
+If there are [any other images](https://github.com/meeech/klocko/blob/0efd5673e54b076ce290d01871cf13bf53b484a1/snippets/product-image-rollover.liquid#L9), then we generate thumbnails for the images below the main image. Don't worry if you don't see them yet - they are hidden by CSS included with the Solo Theme. We'll be tackling that in Step 4.
+
+Lastly, we [include](https://github.com/meeech/klocko/blob/0efd5673e54b076ce290d01871cf13bf53b484a1/snippets/product-image-rollover.liquid#L19) a small piece of javascript which to control it all.
+
+Step 3: Create the JS file in assets
+------------------------------------
+
+Now, you want to create [**product-image-rollover.js**](https://github.com/meeech/klocko/blob/master/assets/product-image-rollover.js) in your **assets** folder.
+
+    $(document).ready(function() { 
+    //Begin Wrapper
+    $('div#images div#thumbs').delegate('a', 'click', function(ev) {
+        ev.preventDefault();
+        var link = this;
+        $('div#thumbs a.active').removeClass('active');
+        $(link).addClass('active');
+
+        $('div#image img')
+            .fadeTo(500, 0.01, function() {
+                $(this).attr('src', link.href);
+            })
+            .bind('load', function() {
+                $(this).fadeTo(500, 1).unbind('load');            
+            });
+    });
+    //End Wrapper    
+    });
+
+When someone clicks on one of the thumbs, this JS will fade out the current image, load the new product image, and the fade the image back in. It will also add the class of 'active' to the link tag wrapping the thumbnail which was just clicked.
+
+Step 4: Adding the CSS
+----------------------
+
+Last but not least, you will need to give a bit of style love. For convenience, I'm not adding this to the main stylesheet. In **assets**  create [**product-image-rollover.css**](https://github.com/meeech/klocko/blob/master/assets/product-image-rollover.css). You can changes the styles here to dress it up a bit.
+
+With this css, we [override](https://github.com/meeech/klocko/blob/master/assets/product-image-rollover.css#L1-8) some styles from Solo Theme.
+
+    /* screen.css Overrides - Some defaults set for Solo Theme which we don't want anymore. */
+    div#images div#thumbs p {
+        display: inline;
+    }
+
+    div#images div#image img {
+        float: none;
+    }
+
+And then add our own. As you can see, the styles are pretty basic, and should be easy enough to modify. 
+
+    /*Center the Thumbs and main image. You can change this if desired.. */
+    div#images div#image {
+        text-align: center;
+    }
+
+    div#images div#thumbs {
+        text-align: center;
+    }
+
+    /* Style the Thumbs */
+    div#images div#thumbs { 
+        padding-top: 10px;
+    }
+
+    div#images div#thumbs a{
+        border: 1px solid #000;
+        /* so the a tag doesnt collapse. */
+        display: inline-block;
+        margin-top: 5px;
+    }
+
+    div#images div#thumbs a.active{
+        border: 1px solid #cc0000;
+    }
+
+    div#images div#thumbs a:hover{
+    	margin-top: 0;
+    	vertical-align: top;
+    }
+
+Open **layout/theme.liquid** and add
+
+    {{ "product-image-rollover.css" | asset_url | stylesheet_tag }}
+
+below
+
+    {{ "theme.css" | asset_url | stylesheet_tag }}
+
+([Example](https://github.com/meeech/klocko/blob/master/layout/theme.liquid#L9-10))
+
+
+And finally
+-----------
+
+And that's pretty much it. I've kept the CSS in this example barebones - just the essentials. We did a bit more CSS work for the version on the [WowWeeTechShop](http://www.wowweetechshop.com).
+
+You can also fetch all this from my test theme up on [github](https://github.com/meeech/klocko).
+
+Troubleshooting
+---------------
+
+* Use the latest version of jQuery (1.4.2). I upgraded the default Solo Theme to jQuery 1.4.2 with no ill effects. The Related Carousel, as well as the Lightbox still work. 
