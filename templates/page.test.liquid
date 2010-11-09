@@ -1,0 +1,15 @@
+{% capture current_time %}{{ "now" | date: "%H%M" }}{% endcapture %}
+{% capture current_day %}{{ "now" | date: "%w" }}{% endcapture %} 
+
+
+{% if current_day == '0' %} 
+    {% if current_time > '1900' and current_time < '2100' %} 
+        We're Open. Call Now or <a href="/pages/contact-us">email us</a> 
+    {% else %} 
+        Live help tonight 7pm est or <a href="/pages/contact-us">email now</a> 
+    {% endif %}
+{% else %} 
+    Call M-F 11-7pm est. Or <a href="/pages/contact-us">email us now</a> 
+{% endif %}
+
+{{ page.content }}
