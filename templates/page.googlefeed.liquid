@@ -1,0 +1,23 @@
+{% layout none %}<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
+<channel>
+    <title>{{shop.name | escape }} Products</title>
+    <description>This is my klocko test shop</description>
+    <link>{{shop.url}}</link>
+{% paginate collections.all.products by 200 %}{% for product in collections.all.products %}
+ <item>
+   <title><![CDATA[{{ product.title | strip_html | strip_newlines | escape }}]]></title>
+   <g:brand>{{product.vendor | escape }}</g:brand>
+   <g:product_type>{{product.type | escape }}</g:product_type>
+   <g:id>{{product.id}}</g:id>
+   <g:condition>New</g:condition>
+   <description><![CDATA[{{ product.description | strip_html | strip_newlines }}]]></description>
+   <g:image_link>{{product.featured_image | product_img_url: 'large'}}</g:image_link>
+   <link>{{shop.url}}{{product.url}}</link>
+   <g:price>{{product.price | money_without_currency}}</g:price>
+   <g:quantity>1</g:quantity>
+   <g:weight>{{ product.variants.first.weight | weight_with_unit }}</g:weight>
+ </item>
+{% endfor %}{% endpaginate %}
+</channel>
+</rss>
