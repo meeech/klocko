@@ -33,6 +33,7 @@ var selectors = {
     FORM_UPDATE_CART_BUTTONS: 'input[type=image], input.button-update-cart',
 
     LINE_ITEM_ROW: '.cart-line-item',
+    LINE_ITEM_QUANTITY_PREFIX: 'input#updates_',
     LINE_ITEM_PRICE_PREFIX: '.cart-line-item-price-',
 
     LINE_ITEM_REMOVE: '.remove a',
@@ -142,6 +143,7 @@ Shopify.onCartUpdate = function(cart, form) {
             //Loops through cart items, update the prices.
             jQ.each(cart.items, function(index, cartItem) {
                 jQ(selectors.LINE_ITEM_PRICE_PREFIX + cartItem.id).html(formatMoney(cartItem.line_price));
+                jQ(selectors.LINE_ITEM_QUANTITY_PREFIX + cartItem.id).val(cartItem.quantity);
             });
 
             //And remove any line items with 0
