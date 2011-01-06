@@ -71,8 +71,8 @@ Shopify.onProduct = function(product) {
 
 /* 
 Examples of call:
-Shopify.formatMoney(600000, '€{{amount_with_comma_separator}} EUR')
-Shopify.formatMoney(600000, '€{{amount}} EUR')
+Shopify.formatMoney(600000, '&euro;{{amount_with_comma_separator}} EUR')
+Shopify.formatMoney(600000, '&euro;{{amount}} EUR')
 Shopify.formatMoney(600000, '${{amount_no_decimals}}')
 Shopify.formatMoney(600000, '{{ shop.money_format }}') in a Liquid template!
 

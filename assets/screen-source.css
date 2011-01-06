@@ -248,7 +248,7 @@ ul#links li.link-6 a.active, ul#links li.link-6 a.active:hover {
 
 div#gocart {
 	font-size: 14px;
-	background: url(links.gif) no-repeat -762px -1px;
+  background: url(links.gif) no-repeat -762px -1px;
 	width: 125px;
 	height: 44px;
 	top: 1px;
