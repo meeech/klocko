@@ -11,6 +11,12 @@ for its callback to send your 3rd request, etc.
 */
 
 /**
+ * 
+ * Updated to Live Version on October 2, 2013 by Spencer Norman
+ * 
+ */
+
+/**
  * Modified by Mitchell Amihod 
  *  We make some mods. consider them feedback :) See comments/commit messages
  * Changes include:
@@ -52,11 +58,33 @@ Shopify.onError = function(XMLHttpRequest, textStatus) {
   // It is JSON.
   // Example: {"description":"The product 'Amelia - Small' is already sold out.","status":500,"message":"Cart Error"}
   var data = eval('(' + XMLHttpRequest.responseText + ')');
-  alert(data.message + '(' + data.status  + '): ' + data.description);
+  if (!!data.message) {
+    alert(data.message + '(' + data.status  + '): ' + data.description);
+  } else {
+    alert('Error : ' + Shopify.fullMessagesFromErrors(data).join('; ') + '.');
+  }
 };
+
+Shopify.fullMessagesFromErrors = function(errors) {
+  var fullMessages = [];
+  jQuery.each(errors, function(attribute, messages) {
+    jQuery.each(messages, function(index, message) {
+      fullMessages.push(attribute + ' ' + message);
+    });
+  });
+  return fullMessages
+}
 
 Shopify.onCartUpdate = function(cart) {
   alert('There are now ' + cart.item_count + ' items in the cart.');
+};  
+
+Shopify.onCartShippingRatesUpdate = function(rates, shipping_address) {
+  var readable_address = '';
+  if (shipping_address.zip) readable_address += shipping_address.zip + ', ';
+  if (shipping_address.province) readable_address += shipping_address.province + ', ';
+  readable_address += shipping_address.country
+  alert('There are ' + rates.length + ' shipping rates available for ' + readable_address +', starting at '+ Shopify.formatMoney(rates[0].price) +'.');
 };  
 
 Shopify.onItemAdded = function(line_item) {
@@ -83,20 +111,29 @@ In a Liquid template, you have access to a shop money formats with:
 All these formats are editable on the Preferences page in your admin.
 */
 Shopify.formatMoney = function(cents, format) {
+  if (typeof cents == 'string') cents = cents.replace('.','');
   var value = '';
   var patt = /\{\{\s*(\w+)\s*\}\}/;
   var formatString = (format || this.money_format);
+
+  function addCommas(moneyString) {
+    return moneyString.replace(/(\d+)(\d{3}[\.,]?)/,'$1,$2');
+  }
+
   switch(formatString.match(patt)[1]) {
   case 'amount':
-    value = floatToString(cents/100.0, 2).replace(/(\d+)(\d{3}[\.,]?)/,'$1 $2');
+    value = addCommas(floatToString(cents/100.0, 2));
     break;
   case 'amount_no_decimals':
-    value = floatToString(cents/100.0, 0).replace(/(\d+)(\d{3}[\.,]?)/,'$1 $2');
+    value = addCommas(floatToString(cents/100.0, 0));
     break;
   case 'amount_with_comma_separator':
-    value = floatToString(cents/100.0, 2).replace(/\./, ',').replace(/(\d+)(\d{3}[\.,]?)/,'$1.$2');
+    value = floatToString(cents/100.0, 2).replace(/\./, ',');
     break;
-  }    
+  case 'amount_no_decimals_with_comma_separator':
+    value = addCommas(floatToString(cents/100.0, 0)).replace(/\./, ',');
+    break;
+  }
   return formatString.replace(patt, value);
 };
 
@@ -179,6 +216,31 @@ Shopify.getCart = function(callback) {
       Shopify.onCartUpdate(cart);
     }
   });
+};
+
+// ---------------------------------------------------------
+// GET cart/shipping_rates.js returns the cart in JSON.
+// ---------------------------------------------------------
+Shopify.getCartShippingRatesForDestination = function(shipping_address, callback) {
+  var params = {
+    type: 'GET',
+    url: '/cart/shipping_rates.json',
+    data: Shopify.param({'shipping_address': shipping_address}),
+    dataType: 'json',
+    success: function(response) { 
+      rates = response.shipping_rates
+      if ((typeof callback) === 'function') {
+        callback(rates, shipping_address);
+      }
+      else {
+        Shopify.onCartShippingRatesUpdate(rates, shipping_address);
+      }
+    },
+    error: function(XMLHttpRequest, textStatus) {
+      Shopify.onError(XMLHttpRequest, textStatus);
+    }
+  }
+  jQuery.ajax(params);
 };
 
 // ---------------------------------------------------------
@@ -366,6 +428,74 @@ Shopify.updateCartNote = function(note, callback) {
   };
   jQuery.ajax(params);
 };
+
+
+if (jQuery.fn.jquery >= '1.4') {
+  Shopify.param = jQuery.param;
+} else {
+  Shopify.param = function( a ) {
+    var s = [],
+      add = function( key, value ) {
+        // If value is a function, invoke it and return its value
+        value = jQuery.isFunction(value) ? value() : value;
+        s[ s.length ] = encodeURIComponent(key) + "=" + encodeURIComponent(value);
+      };
+  
+    // If an array was passed in, assume that it is an array of form elements.
+    if ( jQuery.isArray(a) || a.jquery ) {
+      // Serialize the form elements
+      jQuery.each( a, function() {
+        add( this.name, this.value );
+      });
+    
+    } else {
+      for ( var prefix in a ) {
+        Shopify.buildParams( prefix, a[prefix], add );
+      }
+    }
+
+    // Return the resulting serialization
+    return s.join("&").replace(/%20/g, "+");
+  }
+
+  Shopify.buildParams = function( prefix, obj, add ) {
+    if ( jQuery.isArray(obj) && obj.length ) {
+      // Serialize array item.
+      jQuery.each( obj, function( i, v ) {
+        if ( rbracket.test( prefix ) ) {
+          // Treat each array item as a scalar.
+          add( prefix, v );
+
+        } else {
+          Shopify.buildParams( prefix + "[" + ( typeof v === "object" || jQuery.isArray(v) ? i : "" ) + "]", v, add );
+        }
+      });
+      
+    } else if ( obj != null && typeof obj === "object" ) {
+      if ( Shopify.isEmptyObject( obj ) ) {
+        add( prefix, "" );
+
+      // Serialize object item.
+      } else {
+        jQuery.each( obj, function( k, v ) {
+          Shopify.buildParams( prefix + "[" + k + "]", v, add );
+        });
+      }
+          
+    } else {
+      // Serialize scalar item.
+      add( prefix, obj );
+    }
+  }
+  
+  Shopify.isEmptyObject = function( obj ) {
+    for ( var name in obj ) {
+      return false;
+    }
+    return true;
+  }
+}
+
 
 /* Used by Tools */
 
